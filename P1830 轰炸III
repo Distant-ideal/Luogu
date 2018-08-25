@@ -1,0 +1,29 @@
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main() {
+	int q[101][101], w[101][101]={ { 0 } };	
+	int a, b;
+    int m, n, x, y, X, Y;
+    cin >> a >> b >> m >> n;
+    for(int i = 1; i <= m; i++) {
+        cin >> x >> y >> X >> Y;
+        for(int j = x; j <= X; j++) { 
+            for(int k = y; k <= Y; k++) {
+                q[j][k]++;
+                w[j][k] = i; 
+            }
+        } 
+    }
+    for(int i = 1; i <= n; i++) {
+        cin >> x >> y;
+        if(w[x][y] != 0) {
+            cout << "Y" << " " << q[x][y] << " " << w[x][y] << endl;
+        } else {
+			cout << "N" << endl;
+    	}
+    }
+    return 0;
+}
