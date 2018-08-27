@@ -1,0 +1,32 @@
+#include<stdio.h>
+int main() {
+	int n, a;
+	scanf("%d", &n);
+	a = n % 10;
+	if (n < 0) {
+		n = 0 - n;
+		printf("-");
+	}
+	if(a != 0){
+		while(n) {
+			printf("%d",n % 10);
+			n /= 10;
+		} 
+		printf("\n");
+	} else {
+		for (;;) {
+			a = n % 10;
+			if (a == 0) {
+				n = n / 10;
+			} else {
+				break;
+			}
+		}
+		while(n) {
+			printf("%d",n % 10);
+			n /= 10;
+		} 
+		printf("\n");
+	}
+	 
+}
