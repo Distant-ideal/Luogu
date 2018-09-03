@@ -1,0 +1,21 @@
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<cstdio>
+#include<cmath>
+
+using namespace std;
+
+long long int n , i, a1, a2, x, b1, b2, y, c1, c2, z, s;
+int main() {
+    cin >> n;  
+    cin >> a1 >> a2 >> b1 >> b2 >> c1 >> c2; 
+    if(n % a1 == 0) x = n / a1 * a2; else x = (n / a1+1) * a2;   
+    if(n % b1 == 0) y = n / b1 * b2; else y = (n / b1+1) * b2;
+    if(n % c1 == 0) z = n / c1 * c2; else z = (n / c1+1) * c2;
+    if(x < y && x < z) s = x;   
+    if(y < x && y < z) s = y;
+    if(z < x && z < y) s = z;
+    cout << s << endl; 
+    return 0;
+}
