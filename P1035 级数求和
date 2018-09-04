@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main() {
+	int k,n;
+	n = 0;
+	double s, h;
+	s = 0; 
+	scanf("%d",&k);
+	for(;;){
+		n = n + 1;
+		h = 1.00 / n; 
+		s = s + h;
+		if(s > k)
+			break;
+		}	
+		printf("%d",n);
+		return 0;
+}
