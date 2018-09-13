@@ -1,0 +1,40 @@
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main(){
+	long long int ans[7+1],a[1000+5][7+1],i,j,k,n,b[1000+5],da[7+1]; 
+    cin >> n;
+    for(i = 1; i <= 7; i++) {
+        cin >> ans[i];
+    }
+    for(i = 1;i <= n; i++) {
+        for(j = 1; j <= 7; j++) {
+            cin >> a[i][j];
+        }
+    }
+    for(i = 1; i <= n; i++) {
+        for(j = 1; j <= 7; j++) {
+            for(k = 1;k <= 7; k++) {
+                if(a[i][j] == ans[k]) {
+					b[i]++;
+					break;
+				}  
+            }
+        }
+    }      
+    for(i = 7; i >= 1; i--) {
+        for(j = 1; j <= n; j++) {
+            if(b[j] == i) {
+			da[i]++;
+			}
+        }
+    }      
+    for(i = 7; i >= 1; i--)
+    {
+        cout << da[i] << " "; 
+    }
+    cout << endl;   
+    return 0;
+}
