@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+long long int pow_mod(long long int a, long long int n, long long int m) {
+    long long int ans = 1;
+    while(n){
+        if(n & 1){
+            ans = (ans * a) % m;
+        }
+        a = (a * a) % m;
+        n >>= 1;
+    }
+    return ans;
+}
+
+int main() {
+    long long int a, n, m, s;
+    scanf("%lld %lld %lld", &a, &n, &m);
+    if(n == 0) {
+        s = 1 % m;
+        printf("%lld^%lld mod %lld=%lld\n", a, n, m, s);
+    } else {
+	    printf("%lld^%lld mod %lld=%lld\n", a, n, m, pow_mod(a, n, m));
+    }
+}
