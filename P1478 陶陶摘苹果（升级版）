@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+
+int main() {
+    int n, s, a, b, m = 0, sum = 0;
+    int x, y, z[5280] = {0};
+    scanf("%d %d", &n, &s);
+    scanf("%d %d", &a, &b);
+    for(int i = 0; i < n; i++) {
+        scanf("%d %d", &x, &y);
+        if(x <= a + b) {
+            z[m] = y;
+            m++;
+        }
+    }
+    sort(z, z + m);
+    for(int i = 0; i < m ; i++) {
+        s -= z[i];
+        if(s >= 0) {
+            sum++;
+        }
+    }
+    printf("%d\n", sum);
+    return 0;
+}
