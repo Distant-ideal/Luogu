@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int ab[10] = {0};
+void find(int num) {
+    while (num){
+        ab[num % 10]++;
+        num /= 10;
+    }
+}
+
+int main() {
+    int a, b, c, x, y, z, h = 0, l;
+    scanf("%d %d %d", &a, &b, &c);
+    for(int i = 100; i <= 1000; i++) {
+        l = 0;
+        z = i;
+        x = i * b / a;
+        y = i * c / a;
+        find(x), find(y), find(z);
+        for(int j = 1; j <= 9; j++) {
+            if(ab[j] != 1) {
+                l = 1;
+            }
+        }
+        if(l == 0) {
+            if(x < 1000 && y < 1000) {
+                printf("%d %d %d\n", z, x, y);
+                h = 1;
+            }
+        }
+        memset(ab, 0, sizeof(ab));
+    }
+    if(h == 0) {
+        printf("No!!!\n");
+    }
+    return 0;
+}
