@@ -1,0 +1,15 @@
+#include<cstdio>
+#include<cmath>
+
+using namespace std;
+
+double m = sqrt(5);
+double x = (1 - m) / 2, y = (1 + m) / 2;
+
+int main() {
+    double n,f;
+    scanf("%lf",&n);
+    f=(pow(y, n) - pow(x, n)) / m;
+    printf("%.2f",f);
+    return 0;
+}
