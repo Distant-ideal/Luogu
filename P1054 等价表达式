@@ -1,0 +1,85 @@
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cmath>
+
+#define INF 0x3f3f3f3f
+
+using namespace std;
+
+long long int calc(const char *str, int l, int r, long long int a_value) {
+    int pos = -1, temp_prior = 0, prior = INF - 1;
+    for(int i = l; i <= r; i++) {
+        int cur_prior = INF;
+        switch(str[i]) {
+            case '(': temp_prior += 100; break;
+            case ')': temp_prior -= 100;break;
+            case '+': cur_prior = temp_prior + 1; break;
+            case '-': cur_prior = temp_prior + 1; break;
+            case '*': cur_prior = temp_prior + 2; break;
+            case '^': cur_prior = temp_prior + 3; break;
+        }
+        if(cur_prior <= prior) {
+            prior = cur_prior;
+            pos = i;
+        }    
+    }
+    if(pos == -1) {
+        int num = 0; 
+        for(int i = l; i <= r; i++) {
+            if(str[i] == 'a') return a_value;
+            if(str[i] < '0' || str[i] > '9') continue;
+            num = num * 10 + str[i] - '0';
+        }
+        return num;
+    } else {
+        long long int a = calc(str, l, pos - 1, a_value) % 100000007;
+        long long int b = calc(str, pos + 1, r, a_value) % 100000007;
+        switch(str[pos]) {
+            case '+' : return (a + b) % 100000007;
+            case '-' : return (a - b) % 100000007;
+            case '*' : return (a * b) % 100000007;
+            case '^' : 
+                long long int sum = 1;
+                for(long long int j = 1; j <= b; j++) {
+                    sum = (sum * a )% 100000007;
+                }
+                return sum;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    char str[100000];
+    scanf("%[^\n]s", str);
+    getchar();
+    int n;
+    scanf("%d", &n);
+    getchar();
+    long long int s;
+    char c[100];
+    int h = 0;
+    long long int ans;
+    ans = calc(str, 0, strlen(str) - 1, 3);
+    for(int i = 0; i < n; i++) {
+        getchar();
+        scanf("%[^\n]s", str);
+        //getchar();
+        s = calc(str, 0, strlen(str) - 1, 3);
+        //printf("%d\n", s);
+        if(s == ans) {
+            //printf("%c", 'A' + i);
+            c[h] = 'A' + i;
+            h++;
+        }
+        memset(str, 0, sizeof(str));
+    }
+    for(int i = 0; i < h; i++) {
+        printf("%c", c[i]);
+    }
+    printf("\n");
+    return 0;
+} 
